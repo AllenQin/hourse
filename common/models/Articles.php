@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "articles".
@@ -15,7 +17,7 @@ use Yii;
  * @property int $created_at
  * @property int $updated_at
  */
-class Articles extends \yii\db\ActiveRecord
+class Articles extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -31,7 +33,7 @@ class Articles extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'content', 'category', 'created_at', 'updated_at'], 'required'],
+            [['title', 'content', 'category'], 'required'],
             [['content'], 'string'],
             [['category', 'views', 'created_at', 'updated_at'], 'integer'],
             [['title'], 'string', 'max' => 100],
@@ -45,12 +47,38 @@ class Articles extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => '标题',
-            'content' => '内容',
-            'category' => '分类',
+            'title' => '文章标题',
+            'content' => '文章内容',
+            'category' => '所属分类',
             'views' => '浏览量',
             'created_at' => '创建时间',
             'updated_at' => '更新时间',
         ];
+    }
+    
+    public function behaviors()
+    {
+    	return [
+			'timestamp' => [
+				'class' => TimestampBehavior::className(),
+					'attributes' => [
+						ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+						ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_at',
+					],
+			],
+    	];
+    }
+    
+	/**
+	 * 获取文章分类列表
+	 * 
+	 * @return string[]
+	 */
+    public function categoryList()
+    {
+    	return [
+    		'0' => '投资组合',
+    		'1' => '动态资讯',
+    	];
     }
 }

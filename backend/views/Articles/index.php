@@ -7,21 +7,16 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\ArticlesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Articles';
+$this->title = '资讯文章';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="articles-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
-        <?= Html::a('Create Articles', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('发布新文章', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -30,9 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'content:ntext',
             'category',
             'views',
-            // 'created_at',
-            // 'updated_at',
-
+            'created_at',
+            'updated_at',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

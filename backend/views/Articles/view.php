@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\Articles */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Articles', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '资讯文章', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="articles-view">
@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('更新', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('删除', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -31,10 +31,28 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'content:ntext',
-            'category',
+        	[
+        		'lable' => 'category',
+        		'attribute' => 'category',
+        		'value' => function($model) {
+    				return $model->categoryList()[$model->category];
+   				 }
+    		],
             'views',
-            'created_at',
-            'updated_at',
+            [
+            	'lable' => 'created_at',
+            	'attribute' => 'created_at',
+            	'value' => function($model) {
+            		return date('Y-m-d H:i:s', $model->created_at);
+    			},
+    		],
+    		[
+    			'lable' => 'updated_at',
+    			'attribute' => 'updated_at',
+    			'value' => function($model) {
+    				return date('Y-m-d H:i:s', $model->updated_at);
+    			},
+    		],
         ],
     ]) ?>
 
