@@ -18,6 +18,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'category')->dropDownList($model->categoryList()) ?>
 
+	<?= $form->field($model, 'cover')->fileInput() ?>
     <div class="form-group">
         <?= Html::submitButton('保存', ['class' => 'btn btn-success']) ?>
     </div>

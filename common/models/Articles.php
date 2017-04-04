@@ -2,7 +2,6 @@
 
 namespace common\models;
 
-use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
@@ -48,6 +47,7 @@ class Articles extends ActiveRecord
         return [
             'id' => 'ID',
             'title' => '文章标题',
+        	'cover' => '封面',
             'content' => '文章内容',
             'category' => '所属分类',
             'views' => '浏览量',

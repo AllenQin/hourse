@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "38867685368485c776b5b447b334f86c",
+    "content-hash": "efd59549dd99ac8d45c16387fb61f510",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -307,6 +307,45 @@
                 "html"
             ],
             "time": "2017-03-13T06:30:53+00:00"
+        },
+        {
+            "name": "light/yii2-sweet-submit",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lichunqiang/yii2-sweet-submit.git",
+                "reference": "2f425a6352edbcead8290a167e42ea092f976272"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/lichunqiang/yii2-sweet-submit/2f425a6352edbcead8290a167e42ea092f976272.zip",
+                "reference": "2f425a6352edbcead8290a167e42ea092f976272",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "^1.11"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "light\\widgets\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "lichunqiang",
+                    "email": "light-li@hotmail.com"
+                }
+            ],
+            "description": "make yii2 form submit sweet",
+            "time": "2016-10-14 10:21:39"
         },
         {
             "name": "swiftmailer/swiftmailer",
