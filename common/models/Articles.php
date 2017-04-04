@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
@@ -10,6 +11,7 @@ use yii\db\ActiveRecord;
  *
  * @property int $id
  * @property string $title the article title
+ * @property string $cover the article cover
  * @property string $content the article content
  * @property int $category the article category
  * @property int $views the article views
@@ -36,6 +38,7 @@ class Articles extends ActiveRecord
             [['content'], 'string'],
             [['category', 'views', 'created_at', 'updated_at'], 'integer'],
             [['title'], 'string', 'max' => 100],
+        	[['cover'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg'],
         ];
     }
 
@@ -80,5 +83,16 @@ class Articles extends ActiveRecord
     		'0' => '投资组合',
     		'1' => '动态资讯',
     	];
+    }
+    
+    public function upload()
+    {
+    	if ($this->cover) {
+    		$path = Yii::getAlias("@frontend").'/web/uploads/'. $this->cover->baseName. '.' . $this->cover->extension;
+    		copy($this->cover->tempName, $path);
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
 }

@@ -8,6 +8,7 @@ use common\models\ArticlesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ArticlesController implements the CRUD actions for Articles model.
@@ -65,8 +66,15 @@ class ArticlesController extends Controller
     {
         $model = new Articles();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+        	$model->cover = UploadedFile::getInstance($model, 'cover');
+        	if ($model->upload() && $model->save()) {
+        		return $this->redirect(['view', 'id' => $model->id]);
+        	} else {
+        		return $this->render('create', [
+        			'model' => $model,
+        		]);
+        	}
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -85,7 +93,14 @@ class ArticlesController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        	$model->cover = UploadedFile::getInstance($model, 'cover');
+        	if ($model->upload() && $model->save()) {
+        		return $this->redirect(['view', 'id' => $model->id]);
+        	} else {
+        		return $this->render('update', [
+        				'model' => $model,
+        		]);
+        	}
         } else {
             return $this->render('update', [
                 'model' => $model,

@@ -30,7 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
-        	'cover:image',
+        	[
+        		'lable' => 'cover',
+        		'attribute' => 'cover',
+        		'format' => 'html',
+        		'value' => function($model) {
+        			return Html::img(Yii::$app->params['frontendDomain'].'/uploads/'.$model->cover);
+        		}
+        	],
             'content:ntext',
         	[
         		'lable' => 'category',
