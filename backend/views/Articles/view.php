@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
         			return Html::img(Yii::$app->params['frontendDomain'].'/uploads/'.$model->cover);
         		}
         	],
-            'content:ntext',
+            'content:html',
         	[
         		'lable' => 'category',
         		'attribute' => 'category',
