@@ -28,6 +28,7 @@ class m170404_031019_articles extends Migration
     	$this->createTable('{{%articles}}', [
     		'id' => $this->primaryKey(),
     		'title' => $this->char(100)->notNull()->comment('the article title'),
+    		'cover' => $this->char(200)->null()->comment('the article cover'),
     		'content' => $this->text()->notNull()->comment('the article content'),
     		'category' => $this->smallInteger()->notNull()->comment('the article category'),
     		'views' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('the article views'),
