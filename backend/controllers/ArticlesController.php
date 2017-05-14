@@ -94,7 +94,13 @@ class ArticlesController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
         	$model->cover = UploadedFile::getInstance($model, 'cover');
-        	if ($model->upload() && $model->save()) {
+        	if ($model->cover) {
+        		$model->upload();
+        	} else {
+        		$model->cover = Yii::$app->request->post('cover-img');
+        	}
+        	
+        	if ($model->save()) {
         		return $this->redirect(['view', 'id' => $model->id]);
         	} else {
         		return $this->render('update', [

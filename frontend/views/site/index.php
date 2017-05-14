@@ -1,5 +1,5 @@
 <?php
-
+use yii\helpers\Html;
 /* @var $this yii\web\View */
 
 $this->title = '房直播 - 首页';
@@ -139,39 +139,24 @@ $this->title = '房直播 - 首页';
         <h1>资讯</h1>
         <!-- Three columns -->
         <div class="row">
-          <article class="span4 post"> <img class="img-news" src="/img/blog_img-01.jpg" alt="">
+        <?php if ($newsList):?>
+        <?php foreach ($newsList as $news):?>
+         <!-- /.span4 -->
+          <article class="span4 post">
+          	<?php echo Html::img(Yii::$app->params['frontendDomain'].'/uploads/'.$news->cover, ['class'=>'img-news']);?>
             <div class="inside">
-              <p class="post-date"><i class="icon-calendar"></i>2017-03-03</p>
-              <h2>最新海外购房政策</h2>
+              <p class="post-date"><?php echo date('Y-m-d', $news->created_at);?></p>
+              <h2><?php echo Html::encode($news->title);?></h2>
               <div class="entry-content">
-                <p>内容简介</p>
-                <a href="#" class="more-link">详细</a> </div>
+                <p><?php echo Html::encode(strip_tags(mb_substr($news->content, 0, 10, 'utf-8')));?></p>
+                <?php echo Html::tag('a', '详细', ['class' => 'more-link', 'href' => $news->article_url, 'target' => '_blank'])?>
+             </div>
             </div>
             <!-- /.inside -->
           </article>
           <!-- /.span4 -->
-          <article class="span4 post"> <img class="img-news" src="/img/blog_img-02.jpg" alt="">
-            <div class="inside">
-              <p class="post-date">2013-07-04</p>
-              <h2>泰国购买政策</h2>
-              <div class="entry-content">
-                <p>内容简介</p>
-                <a href="#" class="more-link">详细</a> </div>
-            </div>
-            <!-- /.inside -->
-          </article>
-          <!-- /.span4 -->
-          <article class="span4 post"> <img class="img-news" src="/img/blog_img-03.jpg" alt="">
-            <div class="inside">
-              <p class="post-date">2017-03-5</p>
-              <h2>新西兰房产</h2>
-              <div class="entry-content">
-                <p>内容介绍</p>
-                <a href="#" class="more-link">详细</a> </div>
-            </div>
-            <!-- /.inside -->
-          </article>
-          <!-- /.span4 -->
+        <?php endforeach;?>
+        <?php endif;?>
         </div>
         <!-- /.row -->
         <a href="#" class="btn btn-large">更多</a> </div>
@@ -180,38 +165,9 @@ $this->title = '房直播 - 首页';
     <hr>
     <!--******************** Team Section ********************-->  
     <!--******************** Contact Section ********************-->
+    
     <section id="contact" class="single-page scrollblock">
       <div class="container">
-        <div class="align"><i class="icon-mail-2"></i></div>
-        <h1>留言</h1>
-        <div class="row">
-          <div class="span12">
-            <div class="cform" id="theme-form">
-              <form action="#" method="post" class="cform-form">
-                <div class="row">
-                  <div class="span6"> <span class="your-name">
-                    <input type="text" name="your-name" placeholder="姓名" class="cform-text" size="40" title="姓名">
-                    </span> </div>
-                  <div class="span6"> <span class="your-email">
-                    <input type="text" name="your-phone" placeholder="电话" class="cform-text" size="40" title="电话">
-                    </span> </div>
-                </div>
-                <div class="row">
-                  <div class="span12"> <span class="message">
-                    <textarea name="message" class="cform-textarea" cols="40" rows="10" title="drop us a line."></textarea>
-                    </span> </div>
-                </div>
-                <div>
-                  <input type="submit" value="发送留言" class="cform-submit pull-left">
-                </div>
-                <div class="cform-response-output"></div>
-              </form>
-            </div>
-          </div>
-          <!-- ./span12 -->
-        </div>
-        <!-- /.row -->
       </div>
-      <!-- /.container -->
     </section>
     <hr>

@@ -14,14 +14,20 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'content')->widget(\yii\redactor\widgets\Redactor::className()) ?>
+    <?= $form->field($model, 'content')->widget(\yii\redactor\widgets\Redactor::className(), [
+    	'clientOptions' => [
+    		'height' => '300px'
+    	],
+    ]) ?>
 
     <?= $form->field($model, 'category')->dropDownList($model->categoryList()) ?>
 	<?php 
 		if ($model->isNewRecord == false) {
 			echo Html::img(Yii::$app->params['frontendDomain'].'/uploads/'.$model->cover);
+			echo Html::hiddenInput('cover-img', $model->cover);
 		} 
 	?>
+	<?= $form->field($model, 'article_url')->textInput(['maxlength' => true]) ?>
 	<?= $form->field($model, 'cover')->fileInput() ?>
     <div class="form-group">
         <?= Html::submitButton('保存', ['class' => 'btn btn-success']) ?>

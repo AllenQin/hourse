@@ -54,6 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
             		return date('Y-m-d H:i:s', $model->created_at);
     			},
     		],
+    		'article_url',
     		[
     			'lable' => 'updated_at',
     			'attribute' => 'updated_at',

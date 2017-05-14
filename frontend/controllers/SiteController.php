@@ -12,6 +12,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use common\models\Articles;
 
 /**
  * Site controller
@@ -73,7 +74,13 @@ class SiteController extends Controller
     public function actionIndex()
     {
     	$this->layout = 'index_layout';
-        return $this->render('index');
+    	
+    	$newsList = Articles::find()
+    		->orderBy("id desc")
+    		->limit(3)
+    		->all();
+    	
+        return $this->render('index', ['newsList' => $newsList]);
     }
 
     /**

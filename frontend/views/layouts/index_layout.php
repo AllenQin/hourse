@@ -61,13 +61,13 @@ AppAsset::register($this);
       <header class="clearfix">
         <h1><span>Cloud House!</span> 带给你更多的投资房产选择</h1>
         <div class="container">
-          <div class="row">
-            <div class="span12">
-              <h2>留下邮箱，接收最新动态通知</h2>
-              <input type="text" name="your-email" placeholder="1291*****@qq.com" class="cform-text" size="40" title="your email">
-              <input type="submit" value="订阅" class="cform-submit">
-            </div>
-          </div>
+<!--           <div class="row"> -->
+<!--             <div class="span12"> -->
+<!--               <h2>留下邮箱，接收最新动态通知</h2> -->
+<!--               <input type="text" name="your-email" placeholder="1291*****@qq.com" class="cform-text" size="40" title="your email"> -->
+<!--               <input type="submit" value="订阅" class="cform-submit"> -->
+<!--             </div> -->
+<!--           </div> -->
           <!--
           <div class="row">
             <div class="span12">

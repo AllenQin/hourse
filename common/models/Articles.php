@@ -15,6 +15,7 @@ use yii\db\ActiveRecord;
  * @property string $content the article content
  * @property int $category the article category
  * @property int $views the article views
+ * @property string $article_url the article weixin url
  * @property int $created_at
  * @property int $updated_at
  */
@@ -34,7 +35,7 @@ class Articles extends ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'content', 'category'], 'required'],
+            [['title', 'content', 'category', 'article_url'], 'required'],
             [['content'], 'string'],
             [['category', 'views', 'created_at', 'updated_at'], 'integer'],
             [['title'], 'string', 'max' => 100],
@@ -54,6 +55,7 @@ class Articles extends ActiveRecord
             'content' => '文章内容',
             'category' => '所属分类',
             'views' => '浏览量',
+        	'article_url' => '微信访问地址',
             'created_at' => '创建时间',
             'updated_at' => '更新时间',
         ];

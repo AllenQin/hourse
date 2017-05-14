@@ -32,6 +32,7 @@ class m170404_031019_articles extends Migration
     		'content' => $this->text()->notNull()->comment('the article content'),
     		'category' => $this->smallInteger()->notNull()->comment('the article category'),
     		'views' => $this->integer()->unsigned()->notNull()->defaultValue(0)->comment('the article views'),
+    		'article_url' => $this->char(210)->null()->comment('article weixin url'),
     		'created_at' => $this->integer()->notNull(),
     		'updated_at' => $this->integer()->notNull(),
     	], $tableOptions);
